@@ -60,15 +60,6 @@ default['logstash'] = {
         }
       },
       'filter' => {
-        'grep' => {
-          'match' => ['@message', 'sshd'],
-          'add_tag' => ['sshd'],
-          'drop' => false
-        },
-        'grok' => {
-          'pattern' => '%{MONTH:month} %{MONTHDAY:day} %{TIME} %{HOSTNAME:hostname} sshd\[%{INT:pid}\]: Received disconnect from %{IP:client}.* \[%{WORD:method}\]',
-          'tags' => ['sshd_connect']
-        },
         'multiline' => {
           'type' => 'syslogs',
           'what' => 'previous',
