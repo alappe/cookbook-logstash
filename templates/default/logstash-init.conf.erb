@@ -1,0 +1,23 @@
+# This file is managed by Chef for <%= node['fqdn'] %>
+# Do NOT modify this file directly.
+#
+# logstash - indexer instance
+#
+description     "logstash indexer instance"
+
+start on virtual-filesystems
+stop on runlevel [06]
+
+respawn
+respawn limit 5 30
+limit nofile 65550 65550
+
+env HOME=<%= @working_directory %>
+env JAVA_OPTS='<%= @java_options %>'
+chdir <%= @working_directory %>
+setuid <%= @user %>
+setgid <%= @group %>
+
+script
+exec java -jar <%= @binary_path %> agent -f <%= @configuration_directory %>
+end script
