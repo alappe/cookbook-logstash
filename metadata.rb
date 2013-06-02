@@ -11,6 +11,6 @@ recipe           'logstash', 'Installs and configures logstash'
   supports os
 end
 
-%w{ java }.each do |recipe|
+%w{ apt java }.each do |recipe|
   depends recipe
 end
