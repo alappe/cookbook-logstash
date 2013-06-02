@@ -41,7 +41,7 @@ Attributes
 
 #### configuration hashes
 
-The `['logstasj']['configuration']`-Array should contain hashes in the
+The `['logstash']['configuration']`-Array should contain hashes in the
 following form to write a valid configuration file.
 
 ```ruby
