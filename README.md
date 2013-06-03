@@ -36,7 +36,7 @@ Attributes
 |<tt>['logstash']['secure_remote_logging']['group']</tt>|String|Group to create for remote logging|<tt>logging</tt>|
 |<tt>['logstash']['secure_remote_logging']['comment']</tt>|String|Comment to create for remote logging user|<tt>logging</tt>|
 |<tt>['logstash']['secure_remote_logging']['home']</tt>|String|Home directory for remote logging user|<tt>/home/logging</tt>|
-|<tt>['logstash']['secure_remote_logging']['remote_role']</tt>|String|Role to search for. Node with this role are supposed to expose a public key which will then be added to this users authorized_keys file|<tt>/home/logging</tt>|
+|<tt>['logstash']['secure_remote_logging']['remote_role']</tt>|String|Role to search for. Node with this role are supposed to expose a public key which will then be added to this users authorized_keys file|<tt>logstash-client</tt>|
 |<tt>['logstash']['configuration']</tt>|Array|Contains configuration hashes as detailed below|See attributes file|
 
 #### configuration hashes
