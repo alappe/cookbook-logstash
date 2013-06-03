@@ -22,22 +22,22 @@ Attributes
 #### logstash::default
 | Key | Type | Description | Default |
 |-----|------|-------------|---------|
-|<tt>['logshtash']['user']</tt>|String|The user for logstash to run with|<tt>logstash</tt>|
-|<tt>['logshtash']['group']</tt>|String|The group for logstash to run with|<tt>logstash</tt>|
-|<tt>['logshtash']['additional_groups']</tt>|Array|Array of groups the logstash user should be part of. Some system groups are needed to access the local logfiles…|<tt>['adm','root']</tt>|
-|<tt>['logshtash']['working_directory']</tt>|String|Working directory for logstash|<tt>/opt/logstash</tt>|
-|<tt>['logshtash']['java_options']</tt>|String|Options to pass to the JVM|<tt>-Xms512m -Xmx512m</tt>|
-|<tt>['logshtash']['binary']</tt>|String|Location for the logstash binary|<tt>/usr/local/bin/logstash.jar</tt>|
-|<tt>['logshtash']['source']</tt>|String|Location to download logstash jar file from|<tt>https://logstash.objects.dreamhost.com/release/logstash-1.1.13-flatjar.jar</tt>|
-|<tt>['logshtash']['checksum']</tt>|String|SHA-256 checksum of jar-file|<tt>5ba0639ff4da064c2a4f6a04bd7006b1997a6573859d3691e210b6855e1e47f1</tt>|
-|<tt>['logshtash']['configuration_directory']</tt>|String|Directory to place configuration files inside. Will be created.|<tt>/etc/logstash/conf.d'</tt>|
-|<tt>['logshtash']['allow_secure_remote_logging']</tt>|Boolean|Create a user and allow public key access over ssh for him.|<tt>false</tt>|
-|<tt>['logshtash']['secure_remote_logging']['user']</tt>|String|User to create for remote logging|<tt>logging</tt>|
-|<tt>['logshtash']['secure_remote_logging']['group']</tt>|String|Group to create for remote logging|<tt>logging</tt>|
-|<tt>['logshtash']['secure_remote_logging']['comment']</tt>|String|Comment to create for remote logging user|<tt>logging</tt>|
-|<tt>['logshtash']['secure_remote_logging']['home']</tt>|String|Home directory for remote logging user|<tt>/home/logging</tt>|
-|<tt>['logshtash']['secure_remote_logging']['remote_role']</tt>|String|Role to search for. Node with this role are supposed to expose a public key which will then be added to this users authorized_keys file|<tt>/home/logging</tt>|
-|<tt>['logshtash']['configuration']</tt>|Array|Contains configuration hashes as detailed below|See attributes file|
+|<tt>['logstash']['user']</tt>|String|The user for logstash to run with|<tt>logstash</tt>|
+|<tt>['logstash']['group']</tt>|String|The group for logstash to run with|<tt>logstash</tt>|
+|<tt>['logstash']['additional_groups']</tt>|Array|Array of groups the logstash user should be part of. Some system groups are needed to access the local logfiles…|<tt>['adm','root']</tt>|
+|<tt>['logstash']['working_directory']</tt>|String|Working directory for logstash|<tt>/opt/logstash</tt>|
+|<tt>['logstash']['java_options']</tt>|String|Options to pass to the JVM|<tt>-Xms512m -Xmx512m</tt>|
+|<tt>['logstash']['binary']</tt>|String|Location for the logstash binary|<tt>/usr/local/bin/logstash.jar</tt>|
+|<tt>['logstash']['source']</tt>|String|Location to download logstash jar file from|<tt>https://logstash.objects.dreamhost.com/release/logstash-1.1.13-flatjar.jar</tt>|
+|<tt>['logstash']['checksum']</tt>|String|SHA-256 checksum of jar-file|<tt>5ba0639ff4da064c2a4f6a04bd7006b1997a6573859d3691e210b6855e1e47f1</tt>|
+|<tt>['logstash']['configuration_directory']</tt>|String|Directory to place configuration files inside. Will be created.|<tt>/etc/logstash/conf.d'</tt>|
+|<tt>['logstash']['allow_secure_remote_logging']</tt>|Boolean|Create a user and allow public key access over ssh for him.|<tt>false</tt>|
+|<tt>['logstash']['secure_remote_logging']['user']</tt>|String|User to create for remote logging|<tt>logging</tt>|
+|<tt>['logstash']['secure_remote_logging']['group']</tt>|String|Group to create for remote logging|<tt>logging</tt>|
+|<tt>['logstash']['secure_remote_logging']['comment']</tt>|String|Comment to create for remote logging user|<tt>logging</tt>|
+|<tt>['logstash']['secure_remote_logging']['home']</tt>|String|Home directory for remote logging user|<tt>/home/logging</tt>|
+|<tt>['logstash']['secure_remote_logging']['remote_role']</tt>|String|Role to search for. Node with this role are supposed to expose a public key which will then be added to this users authorized_keys file|<tt>/home/logging</tt>|
+|<tt>['logstash']['configuration']</tt>|Array|Contains configuration hashes as detailed below|See attributes file|
 
 #### configuration hashes
 
