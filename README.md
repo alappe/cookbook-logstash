@@ -46,34 +46,41 @@ following form to write a valid configuration file.
 
 ```ruby
 'system.conf' => {
-	'input' => {
-		'file' => {
-			'type' => 'linux-syslog',
-			'path' => [
-				'/var/log/syslog',
-			]
-		},
-		'file' => {
-			'type' => 'mail',
-			'path' => [
-				'/var/log/mail.log',
-				'/var/log.mail.err'
-			]
+	'input' => [
+	  {
+  		'file' => {
+  			'type' => 'linux-syslog',
+  			'path' => [
+  				'/var/log/syslog',
+  			]
+  		},
+		},{
+  		'file' => {
+  			'type' => 'mail',
+  			'path' => [
+  				'/var/log/mail.log',
+  				'/var/log.mail.err'
+  			]
+  		}
+	  }
+	],
+	'filter' => [
+	  {
+  		'multiline' => {
+  			'type' => 'syslogs',
+  			'what' => 'previous',
+  			'pattern' => '^\t'
+  		}
+	  }
+	],
+	'output' => [
+	  {
+  	  'elasticsearch_http' => {
+  		  'host' => '127.0.0.1',
+  			'flush_size' => 1
+  		}
 		}
-	},
-	'filter' => {
-		'multiline' => {
-			'type' => 'syslogs',
-			'what' => 'previous',
-			'pattern' => '^\t'
-		}
-	},
-	'output' => {
-	  'elasticsearch_http' => {
-		  'host' => '127.0.0.1',
-			'flush_size' => 1
-		}
-	}
+	]
 }
 ```
 

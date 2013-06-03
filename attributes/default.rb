@@ -44,7 +44,7 @@ default['logstash'] = {
   },
   'configuration' => [
     'system.conf' => {
-      'input' => {
+      'input' => [
         'file' => {
           'type' => 'linux-syslog',
           'path' => [
@@ -58,16 +58,16 @@ default['logstash'] = {
             '/var/log.mail.err'
           ]
         }
-      },
-      'filter' => {
+      ],
+      'filter' => [
         'multiline' => {
           'type' => 'syslogs',
           'what' => 'previous',
           'pattern' => '^\t'
         }
-      },
-      'output' => {
-      }
+      ],
+      'output' => [
+      ]
     }
   ]
 }

@@ -1,7 +1,8 @@
 # This file is managed by Chef for <%= node['fqdn'] %>
 # Do NOT modify this file directly.
-<% @config.each do |sectionname, section| %>
+<% @config.each do |sectionname, sectionparts| %>
 <%= sectionname %> {
+  <% sectionparts.each do |section| %>
   <% section.each do |mainkey, values| %>
   <%= mainkey %> {
     <% values.each do |key, value| %>
@@ -9,6 +10,7 @@
     <%= key %> => "<%= value %>"
     <% else %>
     <%= key %> => <%= value %>
+    <% end %>
     <% end %>
     <% end %>
   }
