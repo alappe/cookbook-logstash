@@ -15,8 +15,10 @@ limit nofile 65550 65550
 env HOME=<%= @working_directory %>
 env JAVA_OPTS='<%= @java_options %>'
 chdir <%= @working_directory %>
-setuid <%= @user %>
-setgid <%= @group %>
+# https://bugs.launchpad.net/upstart/+bug/812870
+# We run as root until then…
+#setuid <%= @user %>
+#setgid <%= @group %>
 
 script
 exec java -jar <%= @binary_path %> agent -f <%= @configuration_directory %> --log <%= @log_directory %>/<%= @log_file %>
