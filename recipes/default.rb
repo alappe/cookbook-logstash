@@ -72,7 +72,9 @@ template '/etc/init/logstash.conf' do
     :binary_path => node['logstash']['binary'],
     :user => node['logstash']['user'],
     :group => node['logstash']['group'],
-    :java_options => node['logstash']['java_options']
+    :java_options => node['logstash']['java_options'],
+    :log_directory => node['logstash']['log_directory'],
+    :log_file => node['logstash']['log_file']
   )
 end
 
@@ -102,6 +104,13 @@ node['logstash']['configuration'].each do |config|
       )
     end
   end
+end
+
+file "#{node['logstash']['log_directory']}/#{node['logstash']['log_file']}" do
+  owner node['logstash']['user']
+  group node['logstash']['group']
+  mode 00660
+  action :create_if_missing
 end
 
 service 'logstash' do

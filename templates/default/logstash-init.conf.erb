@@ -19,5 +19,5 @@ setuid <%= @user %>
 setgid <%= @group %>
 
 script
-exec java -jar <%= @binary_path %> agent -f <%= @configuration_directory %>
+exec java -jar <%= @binary_path %> agent -f <%= @configuration_directory %> --log <%= @log_directory %>/<%= @log_file %>
 end script
