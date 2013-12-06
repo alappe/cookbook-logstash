@@ -74,7 +74,8 @@ template '/etc/init/logstash.conf' do
     :group => node['logstash']['group'],
     :java_options => node['logstash']['java_options'],
     :log_directory => node['logstash']['log_directory'],
-    :log_file => node['logstash']['log_file']
+    :log_file => node['logstash']['log_file'],
+    :web_interface => node['logstash']['web_interface']
   )
 end
 

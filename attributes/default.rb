@@ -37,6 +37,7 @@ default['logstash'] = {
   'log_directory' => '/var/log',
   'log_file' => 'logstash.log',
   'allow_secure_remote_logging' => false,
+  'web_interface' => true,
   'secure_remote_logging' => {
     'user' => 'logging',
     'group' => 'logging',
