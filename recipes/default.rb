@@ -61,13 +61,11 @@ remote_file "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['vers
   source node['logstash']['source']
   user node['logstash']['user']
   group node['logstash']['group']
+  action :create_if_missing
 end
 
 # TODO Differentiate platforms here
-dpkg_package 'logstash' do
-  name 'logstash'
-  source "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb"
-end
+dpkg_package "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb"
 
 template '/etc/init/logstash.conf' do
   source 'logstash-init.conf.erb'
