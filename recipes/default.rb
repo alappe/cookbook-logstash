@@ -24,6 +24,8 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+include_recipe 'java::default'
+
 if node['logstash']['allow_secure_remote_logging'] == true
   include_recipe "logstash::ssh_remote_logging"
 end
@@ -54,7 +56,7 @@ directory node['logstash']['working_directory'] do
   action :create
 end
 
-remote_file node['logstash']['package'] do
+remote_file "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb"
   checksum node['logstash']['checksum']
   source node['logstash']['source']
   user node['logstash']['user']
@@ -64,7 +66,7 @@ end
 # TODO Differentiate platforms here
 dpkg_package 'logstash' do
   name 'logstash'
-  source '/usr/local/src/logstash.deb'
+  source "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb"
 end
 
 template '/etc/init/logstash.conf' do
