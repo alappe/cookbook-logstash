@@ -64,7 +64,7 @@ end
 # TODO Differentiate platforms here
 dpkg_package 'logstash' do
   name 'logstash'
-  source '/usr/local/src/logstash.deb
+  source '/usr/local/src/logstash.deb'
 end
 
 template '/etc/init/logstash.conf' do
