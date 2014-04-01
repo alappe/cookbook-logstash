@@ -54,11 +54,17 @@ directory node['logstash']['working_directory'] do
   action :create
 end
 
-remote_file node['logstash']['binary'] do
+remote_file node['logstash']['package'] do
   checksum node['logstash']['checksum']
   source node['logstash']['source']
   user node['logstash']['user']
   group node['logstash']['group']
+end
+
+# TODO Differentiate platforms here
+dpkg_package 'logstash' do
+  name 'logstash'
+  source '/usr/local/src/logstash.deb
 end
 
 template '/etc/init/logstash.conf' do
