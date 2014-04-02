@@ -52,11 +52,11 @@ end
 directory node['logstash']['working_directory'] do
   owner node['logstash']['user']
   group node['logstash']['group']
-  mode 00760
+  mode 00764
   action :create
 end
 
-remote_file "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb"
+remote_file "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb" do
   checksum node['logstash']['checksum']
   source node['logstash']['source']
   user node['logstash']['user']
@@ -65,7 +65,12 @@ remote_file "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['vers
 end
 
 # TODO Differentiate platforms here
-dpkg_package "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb"
+case node['platform_family']
+when 'debian'
+  dpkg_package "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb"
+else
+  Chef::Log.fatal!('Your platform_family is not supported yet… sorry!')
+end
 
 template '/etc/init/logstash.conf' do
   source 'logstash-init.conf.erb'
@@ -75,7 +80,7 @@ template '/etc/init/logstash.conf' do
   variables(
     :working_directory => node['logstash']['working_directory'],
     :configuration_directory => node['logstash']['configuration_directory'],
-    :binary_path => node['logstash']['binary'],
+    :binary_path => "#{node['logstash']['working_directory']}/bin/logstash",
     :user => node['logstash']['user'],
     :group => node['logstash']['group'],
     :java_options => node['logstash']['java_options'],
@@ -94,7 +99,7 @@ end
 directory node['logstash']['configuration_directory'] do
   owner node['logstash']['user']
   group node['logstash']['group']
-  mode 00760
+  mode 00764
   action :create
   recursive true
 end

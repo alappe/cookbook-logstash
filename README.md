@@ -14,7 +14,8 @@ Requirements
 
 #### cookbooks
 
-This cookbook depends on the `java` cookbook to run the logstash.jar.
+This cookbook depends on the `java` cookbook to run logstash. But you have to
+include it manually into the runlist…
 
 Attributes
 ----------
@@ -27,8 +28,8 @@ Attributes
 |<tt>['logstash']['additional_groups']</tt>|Array|Array of groups the logstash user should be part of. Some system groups are needed to access the local logfiles…|<tt>['adm','root']</tt>|
 |<tt>['logstash']['working_directory']</tt>|String|Working directory for logstash|<tt>/opt/logstash</tt>|
 |<tt>['logstash']['java_options']</tt>|String|Options to pass to the JVM|<tt>-Xms512m -Xmx512m</tt>|
-|<tt>['logstash']['binary']</tt>|String|Location for the logstash binary|<tt>/usr/local/bin/logstash.jar</tt>|
-|<tt>['logstash']['source']</tt>|String|Location to download logstash jar file from|<tt>https://logstash.objects.dreamhost.com/release/logstash-1.1.13-flatjar.jar</tt>|
+|<tt>['logstash']['version']</tt>|String|Version of the logstash release|<tt>1.4.0-c82dc09\_all</tt>|
+|<tt>['logstash']['source']</tt>|String|Location to download logstash jar file from|<tt>https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.0-1-c82dc09_all.deb</tt>|
 |<tt>['logstash']['checksum']</tt>|String|SHA-256 checksum of jar-file|<tt>5ba0639ff4da064c2a4f6a04bd7006b1997a6573859d3691e210b6855e1e47f1</tt>|
 |<tt>['logstash']['web_interface']</tt>|Boolean|Enable the brilliant kibana or not|<tt>true</tt>|
 |<tt>['logstash']['log_file']</tt>|String|Name of the logfile|<tt>logstash.log</tt>|
@@ -39,7 +40,7 @@ Attributes
 |<tt>['logstash']['secure_remote_logging']['group']</tt>|String|Group to create for remote logging|<tt>logging</tt>|
 |<tt>['logstash']['secure_remote_logging']['comment']</tt>|String|Comment to create for remote logging user|<tt>logging</tt>|
 |<tt>['logstash']['secure_remote_logging']['home']</tt>|String|Home directory for remote logging user|<tt>/home/logging</tt>|
-|<tt>['logstash']['secure_remote_logging']['remote_role']</tt>|String|Role to search for. Node with this role are supposed to expose a public key which will then be added to this users authorized_keys file|<tt>logstash-client</tt>|
+|<tt>['logstash']['secure_remote_logging']['remote\_role']</tt>|String|Role to search for. Node with this role are supposed to expose a public key which will then be added to this users authorized\_keys file|<tt>logstash-client</tt>|
 |<tt>['logstash']['configuration']</tt>|Array|Contains configuration hashes as detailed below|See attributes file|
 
 #### configuration hashes

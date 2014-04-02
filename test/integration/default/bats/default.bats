@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 @test "logstash should exist" {
-  [ -e /usr/local/bin/logstash.jar ]
+  [ -e /opt/logstash/bin/logstash ]
 }
 
 @test "configuration directory should exist" {
