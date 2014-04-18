@@ -64,7 +64,6 @@ remote_file "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['vers
   action :create_if_missing
 end
 
-# TODO Differentiate platforms here
 case node['platform_family']
 when 'debian'
   dpkg_package "#{Chef::Config[:file_cache_path]}/logstash-#{node['logstash']['version']}.deb"
@@ -72,28 +71,11 @@ else
   Chef::Log.fatal!('Your platform_family is not supported yet… sorry!')
 end
 
-template '/etc/init/logstash.conf' do
-  source 'logstash-init.conf.erb'
-  owner node['logstash']['user']
-  group node['logstash']['group']
-  mode 00644
-  variables(
-    :working_directory => node['logstash']['working_directory'],
-    :configuration_directory => node['logstash']['configuration_directory'],
-    :binary_path => "#{node['logstash']['working_directory']}/bin/logstash",
-    :user => node['logstash']['user'],
-    :group => node['logstash']['group'],
-    :java_options => node['logstash']['java_options'],
-    :log_directory => node['logstash']['log_directory'],
-    :log_file => node['logstash']['log_file'],
-    :web_interface => node['logstash']['web_interface']
-  )
-end
-
-service 'logstash' do
-  provider Chef::Provider::Service::Upstart
-  supports :start => true, :restart => true, :stop => true, :status => true
-  action :nothing
+%w{ logstash logstash-web}.each do |s|
+  service s do
+    supports :start => true, :restart => true, :stop => true, :status => true
+    action :nothing
+  end
 end
 
 directory node['logstash']['configuration_directory'] do
